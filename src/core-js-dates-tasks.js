@@ -208,18 +208,16 @@ function getWeekNumberByDate(/* date */) {
  */
 function getNextFridayThe13th(date) {
   const currentDate = new Date(date);
-  if (currentDate.getDate() !== 13) {
-    currentDate.setDate(13);
-    if (currentDate <= date) {
-      currentDate.setMonth(currentDate.getMonth() + 1);
-    }
-  }
-  while (true) {
-    if (currentDate.getDay() === 5) {
-      return new Date(currentDate);
-    }
+  currentDate.setDate(13);
+
+  if (currentDate <= date) {
     currentDate.setMonth(currentDate.getMonth() + 1);
   }
+
+  while (currentDate.getDay() !== 5) {
+    currentDate.setMonth(currentDate.getMonth() + 1);
+  }
+  return new Date(currentDate);
 }
 
 /**
